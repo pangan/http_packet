@@ -12,11 +12,15 @@ class Resources(object):
 
         try:
             received_data = req.stream.read()
-            json.loads(received_data)
+            json_received = json.loads(received_data)
             received_size = len(received_data)
-            doc = {'received_bytes': received_size}
+            received_json_size = len(json_received['a'])
+            doc = {'received_bytes': received_size,
+                   'received_json_value_size': received_json_size}
             #log.debug('received data: {0}'.format(received_data))
-            log.debug('received_size: {0}'.format(received_size))
+            log.debug('received_data_size: {0}'.format(received_size))
+            log.debug('received_json_value_size: {0}'.format(received_json_size))
+
             resp.status = falcon.HTTP_200
             resp.body = json.dumps(doc, ensure_ascii=False)
         except Exception, e:
