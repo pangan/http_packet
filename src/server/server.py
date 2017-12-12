@@ -12,7 +12,7 @@ class Resources(object):
         received_data = req.stream.read()
         received_size = len(received_data)
         doc = {'received_bytes': received_size}
-        log.debug('received data: {0}'.format(received_data))
+        #log.debug('received data: {0}'.format(received_data))
         log.debug('received_size: {0}'.format(received_size))
         resp.status = falcon.HTTP_200
         resp.body = json.dumps(doc, ensure_ascii=False)
