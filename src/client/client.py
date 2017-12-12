@@ -18,12 +18,13 @@ def get_request(params):
     for doc_size in range(params['from_size'],
                           params['from_size']+params['range']):
         str_val = 'x' * doc_size
+        sending_data = {'a': str_val}
         try:
             req = urllib2.Request(url=params['server'],
-                                  data=str_val)
+                                  data=json.dumps(sending_data))
             response = urllib2.urlopen(req)
             data = json.load(response)
-            if data['received_bytes'] != doc_size:
+            if data['received_bytes'] != len(json.dumps(sending_data)):
                 print ('''
                 Sent data size: {0}
                 Received data size : {1}          
