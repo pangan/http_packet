@@ -1,9 +1,7 @@
 import falcon
 import json
 
-
-from src.common.logger import get_logger
-
+from ..common.logger import get_logger
 
 from wsgiref import simple_server
 
@@ -32,5 +30,5 @@ if __name__ == '__main__':
     server_port = 8090
     log.info('server started on port {0}!'.format(server_port))
     wsgi_app = myapp()
-    httpd = simple_server.make_server('127.0.0.1', server_port, wsgi_app)
+    httpd = simple_server.make_server('0.0.0.0', server_port, wsgi_app)
     httpd.serve_forever()
